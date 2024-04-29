@@ -4,8 +4,8 @@ from django.shortcuts import render
 def home(request):
     return render(request, 'recipes/pages/home.html')
 
-def about(request):
-    return HttpResponse('ABOUT')
+def recipes(request, id):
+    return render(request, 'recipes/pages/recipeView.html', context={
+        'is_detail_text': True
+    })
 
-def contact(request):
-    return HttpResponse('contact')
