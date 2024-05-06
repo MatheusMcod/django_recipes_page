@@ -1,11 +1,22 @@
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
-from rest_framework import status
+from rest_framework import status, generics
 from rest_framework.exceptions import NotFound
 from rest_framework.views import APIView
 
 from recipes.models import Recipe
 from recipes.serializers import RecipeSerializer
+
+'''
+class RecipeListAndCreate(generics.ListCreateAPIView):
+    queryset = Recipe.objects.all()
+    serializer_class = RecipeSerializer
+    
+
+class RecipeDetailChangeAndDelete(generics.RetrieveUpdateDestroyAPIView):
+    queryset = Recipe.objects.all()
+    serializer_class = RecipeSerializer  
+'''
 
 class RecipeListAndCreate(APIView):
     def get(self, request):
@@ -44,4 +55,5 @@ class RecipeDetailChangeAndDelete(APIView):
         recipes = self.get_object(pk)
         recipes.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)
-    
+
+
